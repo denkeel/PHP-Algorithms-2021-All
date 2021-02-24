@@ -1,6 +1,6 @@
 <?php 
 
-class ChromeNotificationNotifier extends DecoratorNotifier
+class ChromeNotifier extends DecoratorNotifier
 {
     public function send(): string {
         $smsNotification = "Chrome notification send"; 
