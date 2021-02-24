@@ -2,15 +2,22 @@
 
 spl_autoload_register();
 
-const RANDOM_USER_ID = 24234;
+$randomUserId = 24234;
 
-$notifier =
-    new ChromeNotificationNotifier(
-        new EmailNotifier(
-            new SmsNotifier(
-                new BaseNotifier(RANDOM_USER_ID)
-            )
-        )
-    );
+$emailEnabled = true;
+$smsEnabled = true;
+$chromeEnabled = true;
+
+$notifier = new BaseNotifier($randomUserId);
+
+if ($emailEnabled) {
+    $notifier = new EmailNotifier($notifier);
+};
+if ($smsEnabled) {
+    $notifier = new SmsNotifier($notifier);
+};
+if ($chromeEnabled) {
+    $notifier = new ChromeNotifier($notifier);
+};
 
 echo $notifier->send();
